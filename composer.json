@@ -1,0 +1,22 @@
+{
+    "name": "agile/domain",
+    "type": "agile-lib",
+    "description": "PHP check domain.",
+    "keywords": ["domain", "agile"],
+    "license": "MIT",
+    "homepage": "http://www.huanguosoft.com",
+    "authors": [
+        {
+            "name": "Andy",
+            "email": "php360@qq.com",
+            "homepage": "http://www.moqifei.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-4": { "Agile\\Lib\\Domain\\": "" }
+    }
+}
