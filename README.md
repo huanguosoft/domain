@@ -3,7 +3,7 @@ PHP根据url获取顶级域名
 
 ####加载
 
-    composer require 'agile/domain'
+    composer require 'agile/domain:dev-master'
 ####使用
     use Agile\Lib\Domain\Domain;
     public function index(Domain $domain)

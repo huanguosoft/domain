@@ -2,7 +2,7 @@
 /**
  * PHP检测顶级域名
  * 使用:
- * composer require 'agile/domain'
+ * composer require 'agile/domain:dev-master'
  *
  * use Agile\Lib\Domain\Domain;
  * public function index(Domain $domain)
