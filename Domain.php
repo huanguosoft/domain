@@ -27,7 +27,6 @@ class Domain
     public function __construct()
     {
         $this->domain   = array(
-
             'top'       => array(
                 // 通用顶级域名列表(字母排序)
                 'aero','arpa','asia',
