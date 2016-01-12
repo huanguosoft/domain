@@ -27,11 +27,12 @@ class Domain
     public function __construct()
     {
         $this->domain   = array(
-            // 顶级域名列表(字母排序)
+
             'top'       => array(
+                // 通用顶级域名列表(字母排序)
                 'aero','arpa','asia',
                 'biz',
-                'cat','cc','club','co','com','coop',
+                'cat','club','com','coop',
                 'date',
                 'edu',
                 'firm',
@@ -40,19 +41,17 @@ class Domain
                 'info','int',
                 'jobs',
                 'link',
-                'me','mil','mobi','mtn','museum',
+                'mil','mobi','mtn','museum',
                 'name','net','news',
                 'online','org',
                 'part','photo','pics','post','pro',
                 'rec','ren',
-                'so','studio',
-                'tel','top','trade','travel','tv',
+                'studio',
+                'tel','top','trade','travel',
                 'video',
                 'wang','win','wtf',
                 'xin','xxx','xyz',
-            ),
-            // 国家/地区域名列表(字母排序)
-            'country'   => array(
+                // 国家/地区顶级域名列表(字母排序)
                 'ac','ad','ae','af','ag','ai','al','am','ao','aq','ar','as','at','au','aw','ax','az',
                 'ba','bb','bd','be','bf','bg','bh','bi','bj','bm','bn','bo','br','bs','bt','bw','by','bz',
                 'ca','cc','cd','cf','cg','ch','ci','ck','cl','cm','cn','co','cr','cu','cv','cw','cx','cy','cz',
@@ -79,6 +78,10 @@ class Domain
                 'ye','yt',
                 'za','zm','zw',
             ),
+            // 二级顶级域名(主要针对cn域名)
+            'double'    => array(
+                'cn'    => array('com','net','org','gov'),
+            ),
         );
     }
 
@@ -92,26 +95,26 @@ class Domain
     {
         $host = parse_url($url)['host'];
         // 翻转域名数组
-        $domain = array_reverse(explode('.', $host));
+        $domainArr = array_reverse(explode('.', $host));
 
-        $count = count($domain);
+        $count = count($domainArr);
         if ($count == 1) {
             // eg:localhost
-            return $domain[0];
+            return $domainArr[0];
         } elseif ($count == 2) {
-            // eg:xxx.com
-            return $domain[1].'.'.$domain[0];
+            // eg:xxx.com  xxx.cn
+            return $domainArr[1].'.'.$domainArr[0];
         } else {
-            if (in_array($domain[0], $this->domain['country'])) {
-                if (in_array($domain[1], $this->domain['top'])) {
-                    //eg:abc.xxx.com.cn
-                    return $domain[2].'.'.$domain[1].'.'.$domain[0];
+            if (isset($this->domain['double'][$domainArr[0]])) {
+                if (in_array($domainArr[1], $this->domain['double'][$domainArr[0])) {
+                    //eg:xxx.com.cn
+                    return $domainArr[2].'.'.$domainArr[1].'.'.$domainArr[0];
                 }
-                // eg:abc.xxx.com
-                return $domain[1].'.'.$domain[0];
-            } elseif (in_array($domain[0], $this->domain['top'])) {
-                // eg:abc.xxx.com
-                return $domain[1].'.'.$domain[0];
+                // eg:xxx.cn
+                return $domainArr[1].'.'.$domainArr[0];
+            } elseif (in_array($domainArr[0], $this->domain['top'])) {
+                // eg:xxx.com
+                return $domainArr[1].'.'.$domainArr[0];
             } else {
                 // eg:127.0.0.1, test.test
                 return $host;
