@@ -2,7 +2,7 @@
 /**
  * PHP检测顶级域名
  * 使用:
- * composer require 'agile/domain:dev-master'
+ * composer require 'agile/domain:~1.0'
  *
  * use Agile\Lib\Domain\Domain;
  * public function index(Domain $domain)
@@ -12,7 +12,7 @@
  * }
  *
  * @author 李扬(Andy) <php360@qq.com>
- * @link   http://www.huanguosoft.com
+ * @link   技安后院 http://www.moqifei.com
  */
 namespace Agile\Lib\Domain;
 
