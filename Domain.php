@@ -105,7 +105,7 @@ class Domain
             return $domainArr[1].'.'.$domainArr[0];
         } else {
             if (isset($this->domain['double'][$domainArr[0]])) {
-                if (in_array($domainArr[1], $this->domain['double'][$domainArr[0])) {
+                if (in_array($domainArr[1], $this->domain['double'][$domainArr[0]])) {
                     //eg:xxx.com.cn
                     return $domainArr[2].'.'.$domainArr[1].'.'.$domainArr[0];
                 }
